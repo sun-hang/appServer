@@ -13,6 +13,7 @@ const data = mockjs.mock({
                 "newf9QlpPYK7pZP414edfea3507fcd7f399236d21c18ef0161233201398476.jpg",
                 "newhvzvVJnyB2XX7df10e59c52057a3b72b79fcb1535f97161233201381488.jpg"
             ],
+            "detail": "@cparagraph(2)",
             "tag|1": ["迪奥,口红", '娇兰,面霜', '迪奥,眼霜', '阿玛尼,粉底液', '风诗悦吟,散粉'],
             "stock|1-30": 20,
             "options": [{ "name": "色号", "child": ["999", "888", "777"] }, { "name": "大小", "child": ["大", "中", "小"] }],

@@ -12,7 +12,7 @@ const Product = require('../models/product');
  */
 module.exports.insert = async (desc = {}) => {
     let data = desc;
-    if(desc.data && Array.isArray(desc.data)){
+    if (desc.data && Array.isArray(desc.data)) {
         data = desc.data;
     };
     try {
@@ -79,6 +79,10 @@ module.exports.findAndByPage = async (queryObj = { productName: '', tag: '' }, p
 
     return await query.sort(sortObj);
 
+}
+
+module.exports.findOne = async (_id = '') => {
+    return await Product.findOne({ _id })
 }
 
 

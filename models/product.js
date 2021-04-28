@@ -22,6 +22,10 @@ const productSchema = new mongoose.Schema({
         type: [String],
         default: []
     },
+    detail: {
+        type: String,
+        required: true
+    },
     // 多个可以用","分割
     tag: {
         type: String,
