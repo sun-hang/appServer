@@ -1,4 +1,4 @@
-const Product = require('../models/product');
+const Product = require('../models/product').Product;
 
 /**
  * 增删改查四个方面

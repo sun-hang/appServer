@@ -1,5 +1,9 @@
 const mongoose = require('mongoose');
 const Options = require('./productOptionSchema');
+/**
+ * 添加一个属性，用于商品状态:上架下架
+ * 未解决：小程序还需判断库存是否充足，加入购物车是和详情页时要判断
+ */
 const productSchema = new mongoose.Schema({
     productName: {
         type: String,
@@ -44,11 +48,18 @@ const productSchema = new mongoose.Schema({
         type: [Options.option],
         default: []
     },
+    /**
+     * 商品状态，是否上架
+     */
+    state: {
+        type: Boolean,
+        default: false
+    },
     //商品规格价格
     optionsDetail: {
         type: [Options.optionDetail],
         default: []
     }
 })
-
-module.exports = mongoose.model('Product', productSchema);
+module.exports.module = productSchema;
+module.exports.Product = mongoose.model('Product', productSchema);
