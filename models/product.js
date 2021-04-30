@@ -4,7 +4,8 @@ const Options = require('./productOptionSchema');
  * 添加一个属性，用于商品状态:上架下架
  * 未解决：小程序还需判断库存是否充足，加入购物车是和详情页时要判断
  */
-const productSchema = new mongoose.Schema({
+
+let productTypes = {
     productName: {
         type: String,
         required: true
@@ -60,6 +61,10 @@ const productSchema = new mongoose.Schema({
         type: [Options.optionDetail],
         default: []
     }
+}
+
+const productSchema = new mongoose.Schema({
+    ...productTypes
 })
-module.exports.module = productSchema;
+module.exports.module = productTypes;
 module.exports.Product = mongoose.model('Product', productSchema);
