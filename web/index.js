@@ -1,6 +1,10 @@
 const express = require('express');
 const app = express();
 const cors = require('cors');
+const http = require('http');
+const https = require('https');
+const path = require('path');
+const fs = require('fs');
 
 // 跨域设置
 app.use(cors({
@@ -8,7 +12,7 @@ app.use(cors({
         callback(null, true)
     }
 }))
-
+console.log(path.resolve(__dirname, '../option'))
 // 静态文件路径
 app.use(express.static('./public'))
 
@@ -18,7 +22,7 @@ app.use(express.urlencoded({
 }));
 
 //用于解析json格式数据 
-app.use(express.json());  
+app.use(express.json());
 
 // 动态api处理接口
 // app.use('/api/dynamic', require('./api/dynamic'));
@@ -42,6 +46,15 @@ app.use((err, req, res, next) => {
 })
 
 // 开启监听并执行回调函数
-app.listen(12307, () => {
-    console.log('开始监听12307端口');
+const httpApp = http.createServer(app);
+const httpsApp = https.createServer({ key: fs.readFileSync(path.resolve(__dirname, '../option/5570446_fangmmmm.top.key')), cert: fs.readFileSync(path.resolve(__dirname, '../option/5570446_fangmmmm.top.pem')) }, app)
+httpApp.listen(529, () => {
+    console.log('http开始监听529端口')
 })
+
+httpsApp.listen(508, () => {
+    console.log('https开始监听508端口');
+})
+// app.listen(12307, () => {
+//     console.log('开始监听12307端口');
+// })
