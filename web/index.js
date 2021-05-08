@@ -36,6 +36,11 @@ app.use('/api/tag', require('./api/tag'));
 // 文件上传api处理接口
 app.use('/api/upload', require('./api/upload'));
 
+// 用户信息api处理接口
+app.use('/api/admin', require('./api/admin'));
+
+//订单信息处理中间件接口
+app.use('/api/order', require('./api/order'))
 // 错误处理中间件
 app.use((err, req, res, next) => {
     if (res.headersSent) {
