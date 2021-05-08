@@ -36,6 +36,10 @@ const orderSchema = new mongoose.Schema({
         type: typeSchema,
         required: true
     },
+    adminId: {  //用户id
+        type: mongoose.Schema.Types.ObjectId,
+        required: true
+    },
     address: { //收货地址
         type: addressSchema,
         required: true
@@ -49,6 +53,14 @@ const orderSchema = new mongoose.Schema({
     },
     courierNumber: { //快递单号，可能用不到先放着
         type: String
+    },
+    isDelete: {  //是否删除
+        type: Boolean,
+        value: false
+    },
+    orderTime: {  //订单创建时间
+        type: Number,
+        default: Date.now
     }
 })
 
