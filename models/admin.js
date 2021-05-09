@@ -63,7 +63,7 @@ const addressSchema = new mongoose.Schema({
 })
 
 const adminSchema = new mongoose.Schema({
-    opedId: { //小程序唯一标识
+    openId: { //小程序唯一标识
         type: String,
         required: true,
         unique: true

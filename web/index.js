@@ -43,12 +43,16 @@ app.use('/api/admin', require('./api/admin'));
 app.use('/api/order', require('./api/order'))
 // 错误处理中间件
 app.use((err, req, res, next) => {
-    if (res.headersSent) {
-        return next(err)
-    }
-    res.status(500)
-    res.render('error', { error: err })
+    // console.log(res.headersSent)
+    // if (res.headersSent) {
+    //     return next(err)
+    // }
+    res.status(500).json({ error: err.message });
 })
+
+// app.use(function (err, req, res, next) {
+//     res.status(500).send('未知错误')
+//   })
 
 // 开启监听并执行回调函数
 const httpApp = http.createServer(app);

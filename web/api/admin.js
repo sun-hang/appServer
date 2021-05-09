@@ -8,7 +8,11 @@ router.get('/', async (req, res, next) => {
 })
 
 router.post('/', async (req, res, next) => {
-    res.json(await Admin.addAdmin(req.body));
+    try {
+        res.json(await Admin.addAdmin(req.body));
+    } catch (error) {
+        next(new Error(error.message))
+    }
 })
 
 router.put('/:id', async (req, res, next) => {

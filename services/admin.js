@@ -32,5 +32,9 @@ module.exports.removeAdmin = async (_id) => {
  * @returns 返回查询结果
  */
 module.exports.findOne = async (_id = "", openId = "") => {
-    return await Admin.findOne({ $or: { _id, openId } });
+    let orList = [{ openId }];
+    if (_id) {
+        orList.push({ _id });
+    }
+    return await Admin.findOne({ $or: orList });
 }
