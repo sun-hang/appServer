@@ -30,12 +30,23 @@ const typeSchema = new mongoose.Schema({
     }
 })
 
-const orderSchema = new mongoose.Schema({
+const productItemSchema = new mongoose.Schema({
     ...productSchema, //所有的商品信息
     type: { //商品规格信息和购买数量及价格
         type: typeSchema,
         required: true
+    }
+})
+
+const orderSchema = new mongoose.Schema({
+    /**
+     * 一个订单可能会有多个商品
+     */
+    products: {
+        type: [productItemSchema],
+        default: []
     },
+
     adminId: {  //用户id
         type: mongoose.Schema.Types.ObjectId,
         required: true
