@@ -59,6 +59,10 @@ const addressSchema = new mongoose.Schema({
         type: String,
         required: true,
         match: /^1[345678]{1}\d{9}$/
+    },
+    isDefault: {
+        type: Boolean,
+        default: false
     }
 })
 
