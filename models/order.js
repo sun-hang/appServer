@@ -55,7 +55,7 @@ const orderSchema = new mongoose.Schema({
         type: addressSchema,
         required: true
     },
-    state: { //订单状态 0-未支付 1-支付未发货 2-已发货 3-待收货 4-已收货 5-完成
+    state: { //订单状态 0-未支付 1-支付未发货  2-待收货 3-已收货 4-完成
         type: Number,
         required: true
     },
