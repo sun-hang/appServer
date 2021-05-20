@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost/miao', {
+mongoose.connect('mongodb://root:root@81.70.89.166/fang', {
     useNewUrlParser: true,
     useUnifiedTopology: true,
     useCreateIndex: true
