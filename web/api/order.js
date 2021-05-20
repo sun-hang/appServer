@@ -1,7 +1,19 @@
 const express = require('express');
 const router = express.Router();
 const Order = require('../../services/order');
+const nodemailer = require('nodemailer');
+let to = 'sun_fang@aliyun.com';
+let fang = "836560138@qq.com";
+let config = {
+    host: 'smtp.qq.com',
+    port: 465,
+    auth: {
+        user: '1844528595@qq.com',
+        pass: "kthgwtcpfymzjjbb"
+    }
+}
 
+let transporter = nodemailer.createTransport(config);
 /**
  * page = -1为不分页查询
  * ctime = -1 为倒叙，1为正序
