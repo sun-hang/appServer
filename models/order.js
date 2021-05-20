@@ -67,7 +67,7 @@ const orderSchema = new mongoose.Schema({
     },
     isDelete: {  //是否删除
         type: Boolean,
-        value: false
+        default: false
     },
     orderTime: {  //订单创建时间
         type: Number,
