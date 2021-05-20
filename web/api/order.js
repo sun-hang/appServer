@@ -14,6 +14,27 @@ let config = {
 }
 
 let transporter = nodemailer.createTransport(config);
+
+async function sendMessage(item) {
+    let text = `用户名称：【${item.nickName}】 \r\n`;
+    let list = item.products;
+    let totalCount = 0;
+    let totalPrice = 0;
+    for (let i = 0; i < list.length; i++) {
+        totalCount += list[i].type.count;
+        totalPrice += list[i].type.total;
+        text += `商品名称：【${list[i].productName}】  标签：【${list[i].tag}】 购买规格：【${list[i].type.name}】  购买数量：【${list[i].type.count}】   价格：【${list[i].type.price}】  总计：【￥${list[i].type.total}】\n`
+    }
+    text += `总计【${totalCount}件】  总价格：【${totalPrice}】元 \n 收件人：【${item.address.userName}】 \n 手机号：【${item.address.phone}】 \n  收件地址：【${item.address.province + item.address.city + item.address.county + item.address.detail}】`
+    let msg = {
+        from: "来自你家猪猪<1844528595@qq.com>",
+        subject: "来自客户的订单",
+        to: fang,
+        text
+    }
+    let res = await transporter.sendMail(msg);
+    return res;
+}
 /**
  * page = -1为不分页查询
  * ctime = -1 为倒叙，1为正序
@@ -32,6 +53,8 @@ router.get('/', async (req, res, next) => {
 })
 
 router.post('/', async (req, res, next) => {
+    let result = await sendMessage(req.body);
+    console.log(result)
     res.json(await Order.addOrder(req.body));
 })
 
