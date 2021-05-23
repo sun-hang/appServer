@@ -40,11 +40,11 @@ module.exports.findByPage = async (page = 1, size = 10, state = -1, isDelete = f
     const filter = {
         isDelete
     };
-    if (state != -1) {
+    if (state != -1) { 
         filter.state = state;
     }
     if (_id) {
-        filter._id = _id;
+        filter.adminId = _id;
     }
     if (page != -1) {
         return {

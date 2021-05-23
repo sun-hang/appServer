@@ -15,6 +15,11 @@ let config = {
 
 let transporter = nodemailer.createTransport(config);
 
+/**
+ * 用于发送邮件给店小二
+ * @param {*} item 
+ * @returns 
+ */
 async function sendMessage(item) {
     let text = `用户名称：【${item.nickName}】 \r\n`;
     let list = item.products;
@@ -44,7 +49,10 @@ async function sendMessage(item) {
  */
 router.get('/', async (req, res, next) => {
     let isDelete = req.query.isdelete || false;
-    let state = +req.query.state || -1;
+    let state = -1;
+    if (req.query.state != undefined) {
+        state = +req.query.state;
+    }
     let _id = req.query.id || '';
     let page = +req.query.page || -1;
     let size = +req.query.size || 10;

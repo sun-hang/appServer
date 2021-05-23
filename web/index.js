@@ -12,7 +12,7 @@ app.use(cors({
         callback(null, true)
     }
 }))
-console.log(path.resolve(__dirname, '../option'))
+// console.log(path.resolve(__dirname, '../option'))
 // 静态文件路径
 app.use(express.static('./public'))
 
