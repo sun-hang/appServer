@@ -32,7 +32,7 @@ module.exports.removeOrder = async (_id) => {
  * 分页查询订单数据,默认倒叙
  * @param {Number} page 分页页码
  * @param {Number} size 分页页容量
- * @param {Number} state 订单状态 0-未支付 1-支付未发货 2-已发货 3-已收货 -1-不添加此条件
+ * @param {Number} state 订单状态 0-未支付 1-支付未发货 2-已发货 3-已收货 4-已取消 -1-不添加此条件
  * @param {Boolean} isDelete 用户端是否已删除
  * @param {String} _id 用户objectId
  */

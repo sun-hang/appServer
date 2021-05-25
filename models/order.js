@@ -55,12 +55,16 @@ const orderSchema = new mongoose.Schema({
         type: addressSchema,
         required: true
     },
-    state: { //订单状态 0-未支付 1-支付未发货  2-待收货 3-已收货 4-完成
+    state: { //订单状态 0-未支付 1-支付未发货  2-待收货 3-已收货 4-已取消
         type: Number,
         required: true
     },
     orderNumber: { //订单号，可能用不到，先放着
-        type: String
+        type: String,
+        default: () => {
+            let num = Math.random().toString(32).slice(2,6);
+            return num + Date.now();
+        }
     },
     courierNumber: { //快递单号，可能用不到先放着
         type: String
