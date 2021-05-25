@@ -60,6 +60,11 @@ router.get('/', async (req, res, next) => {
     res.json(await Order.findByPage(page, size, state, isDelete, _id, ctime))
 })
 
+router.get('/id', async (req, res, next) => {
+    let id = req.query.id;
+    res.json(await Order.findOne(id));
+})
+
 router.post('/', async (req, res, next) => {
     let result = await sendMessage(req.body);
     console.log(result)

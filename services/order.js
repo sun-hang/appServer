@@ -40,7 +40,7 @@ module.exports.findByPage = async (page = 1, size = 10, state = -1, isDelete = f
     const filter = {
         isDelete
     };
-    if (state != -1) { 
+    if (state != -1) {
         filter.state = state;
     }
     if (_id) {
@@ -53,4 +53,8 @@ module.exports.findByPage = async (page = 1, size = 10, state = -1, isDelete = f
         }
     }
     return await Order.find(filter).sort({ orderTime })
+}
+
+module.exports.findOne = async (_id) => {
+    return await Order.findById(_id)
 }
