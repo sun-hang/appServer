@@ -1,13 +1,13 @@
 const mongoose = require('mongoose');
 
 const loggerSchema = new mongoose.Schema({
-    data: {
+    time: {
         type: Number,
         required: true
     },
     visits: {
         type: Number,
-        default: 1
+        default: 0
     },
     orderNumber: {
         type: Number,

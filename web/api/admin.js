@@ -9,6 +9,7 @@ router.get('/', async (req, res, next) => {
 
 router.post('/', async (req, res, next) => {
     try {
+        console.log(req.body)
         res.json(await Admin.addAdmin(req.body));
     } catch (error) {
         next(new Error(error.message))

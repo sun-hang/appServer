@@ -47,8 +47,8 @@ const orderSchema = new mongoose.Schema({
         default: []
     },
 
-    adminId: {  //用户id
-        type: mongoose.Schema.Types.ObjectId,
+    adminId: {  //用户openId
+        type: String,
         required: true
     },
     address: { //收货地址
@@ -62,7 +62,7 @@ const orderSchema = new mongoose.Schema({
     orderNumber: { //订单号，可能用不到，先放着
         type: String,
         default: () => {
-            let num = Math.random().toString(32).slice(2,6);
+            let num = Math.random().toString(32).slice(2, 6);
             return num + Date.now();
         }
     },

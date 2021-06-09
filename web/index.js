@@ -41,6 +41,9 @@ app.use('/api/admin', require('./api/admin'));
 
 //订单信息处理中间件接口
 app.use('/api/order', require('./api/order'))
+
+//日常数据记录
+app.use('/api/logger', require('./api/logger'))
 // 错误处理中间件
 app.use((err, req, res, next) => {
     // console.log(res.headersSent)
@@ -58,7 +61,7 @@ app.use((err, req, res, next) => {
 const httpApp = http.createServer(app);
 const httpsApp = https.createServer({ key: fs.readFileSync(path.resolve(__dirname, '../option/5570446_fangmmmm.top.key')), cert: fs.readFileSync(path.resolve(__dirname, '../option/5570446_fangmmmm.top.pem')) }, app)
 httpApp.listen(529, () => {
-    console.log('http开始监听529端口')
+    console.log('http开始监听529端口');
 })
 
 httpsApp.listen(508, () => {
@@ -67,3 +70,9 @@ httpsApp.listen(508, () => {
 // app.listen(12307, () => {
 //     console.log('开始监听12307端口');
 // })
+
+function createLogItem() {
+    let current = Date.now(); //当前时间
+    let target = new Date(new Date().setHours(0, 0, 0, 0)).getTime();
+
+}

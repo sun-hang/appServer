@@ -50,13 +50,15 @@ const uploadImage = multer({
 router.post('/', uploadImage.array('image', 10), async (req, res, next) => {
     // console.log(req.files);
     let files = req.files;
+    let result = [];
     files = await Promise.all(files.map(async (item) => {
-        await mark(path.resolve(__dirname, '../../public/2.jpg'), path.resolve(__dirname, '../../public/' + item.filename), path.resolve(__dirname, '../../public/new' + item.filename))
+        await mark(path.resolve(__dirname, '../../public/2.jpg'), path.resolve(__dirname, '../../public/' + item.filename), path.resolve(__dirname, '../../public/f' + item.filename))
         await fs.promises.unlink(path.resolve(__dirname, '../../public/' + item.filename));
-        item.filename = 'new' + item.filename;
+        item.filename = 'f' + item.filename;
+        result.push(item.filename);
         return item;
     }))
-    res.json(resultFuncs.resultObject(files, '图片上传成功'));
-})
+    res.json(resultFuncs.resultObject(result, '图片上传成功'));
+}) 
 
 module.exports = router;

@@ -9,7 +9,7 @@ module.exports.addAdmin = async (desc = {}) => {
 }
 
 /**
- * 修改一个用户
+ * 修改一个用户 
  * @param {string} _id  用户id
  * @param {object} desc 用户信息
  */
