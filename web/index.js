@@ -6,6 +6,7 @@ const https = require('https');
 const path = require('path');
 const fs = require('fs');
 
+
 // 跨域设置
 app.use(cors({
     origin(origin, callback) {
@@ -62,6 +63,7 @@ const httpApp = http.createServer(app);
 const httpsApp = https.createServer({ key: fs.readFileSync(path.resolve(__dirname, '../option/5570446_fangmmmm.top.key')), cert: fs.readFileSync(path.resolve(__dirname, '../option/5570446_fangmmmm.top.pem')) }, app)
 httpApp.listen(529, () => {
     console.log('http开始监听529端口');
+    require('../utils/logger')
 })
 
 httpsApp.listen(508, () => {
