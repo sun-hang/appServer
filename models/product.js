@@ -50,11 +50,11 @@ let productTypes = {
         default: []
     },
     /**
-     * 商品状态，是否上架
+     * 商品状态，是否上架 0上架销售中 1待上架 2下架
      */
     state: {
-        type: Boolean,
-        default: false
+        type: Number,
+        default: 0
     },
     //商品规格价格
     optionsDetail: {

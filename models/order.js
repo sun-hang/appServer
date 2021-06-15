@@ -69,9 +69,9 @@ const orderSchema = new mongoose.Schema({
     courierNumber: { //快递单号，可能用不到先放着
         type: String
     },
-    isDelete: {  //是否删除
-        type: Boolean,
-        default: false
+    isDelete: {  //是否删除 0为删除 1为未删除
+        type: Number,
+        default: 1
     },
     orderTime: {  //订单创建时间
         type: Number,

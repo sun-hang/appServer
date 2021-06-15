@@ -33,13 +33,18 @@ module.exports.removeOrder = async (_id) => {
  * @param {Number} page 分页页码
  * @param {Number} size 分页页容量
  * @param {Number} state 订单状态 0-未支付 1-支付未发货 2-已发货 3-已收货 4-已取消 -1-不添加此条件
- * @param {Boolean} isDelete 用户端是否已删除
+ * @param {Boolean} isDelete 用户端是否已删除 0为删除 1为未删除
  * @param {String} _id 用户objectId
  */
-module.exports.findByPage = async (page = 1, size = 10, state = -1, isDelete = false, _id = '', orderTime = -1) => {
+module.exports.findByPage = async (page = 1, size = 10, state = -1, isDelete = 1, _id = '', orderTime = -1) => {
     const filter = {
         isDelete
     };
+
+    if (isDelete > -1 && isDelete < 2) {
+        filter.isDelete = isDelete;
+    }
+
     if (state != -1) {
         filter.state = state;
     }

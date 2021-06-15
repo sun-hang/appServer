@@ -29,15 +29,15 @@ router.get('/', async (req, res, next) => {
     }
 
     if (req.query.ctime) {
-        sortObj.ctime = req.query.ctime;
+        sortObj.ctime = +req.query.ctime;
     }
 
     if (req.query.currentPric) {
-        sortObj.currentPric = req.query.currentPric;
+        sortObj.currentPric = +req.query.currentPric;
     }
 
     if (req.query.originPric) {
-        sortObj.originPric = req.query.originPric;
+        sortObj.originPric = +req.query.originPric;
     }
 
     res.json(await productSer.findAndByPage(queryObj, pagerObj, sortObj));

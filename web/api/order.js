@@ -43,12 +43,12 @@ async function sendMessage(item) {
 /**
  * page = -1为不分页查询
  * ctime = -1 为倒叙，1为正序
- * 根据是否删除 isDelete
+ * 根据是否删除 isDelete 0为删除 1为未删除 为传输不带此条件
  * 根据订单状态 state 0-未支付 1-已支付 2-已发货 3-已收货
  * 根据用户id进行查询
  */
 router.get('/', async (req, res, next) => {
-    let isDelete = req.query.isdelete || false;
+    let isDelete = +req.query.isdelete || 0;
     let state = -1;
     if (req.query.state != undefined) {
         state = +req.query.state;
