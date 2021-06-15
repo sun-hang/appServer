@@ -43,10 +43,24 @@ router.get('/', async (req, res, next) => {
     res.json(await productSer.findAndByPage(queryObj, pagerObj, sortObj));
 })
 
+/**
+ * 根据状态查询商品
+ */
+router.get('/state', async (req, res, next) => {
+    let state = +req.query.state || -1;
+    let page = +req.query.page || 1;
+    let size = +req.query.size || 10;
+    let ctime = +req.query.ctime
+    res.json(await productSer.findState(state, page, size, ctime))；
+})
+
+/**
+ * 获取单个商品
+ */
 router.get('/:id', async (req, res, next) => {
     let _id = req.params.id;
     const result = await productSer.findOne(_id);
-    res.json({result})
+    res.json({ result })
 })
 
 /**

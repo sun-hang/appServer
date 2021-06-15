@@ -85,6 +85,31 @@ module.exports.findOne = async (_id = '') => {
     return await Product.findOne({ _id })
 }
 
+/**
+ * 根据状态进行分页查询
+ * @param {Number} state 
+ * @param {Number} page 
+ * @param {Number} size 
+ */
+module.exports.findState = async (state = -1, page = 1, size = 10, ctime) => {
+    const queryObj = {};
+    const sortObj = {};
+    if(ctime == -1){
+        sortObj.ctime = ctime;
+    }
+    if (state > -1) {
+        queryObj.state = state;
+    }
+    const query = Product.find(queryObj);
+    if (verificationPagerNumber(page) && verificationPagerNumber(size)) {
+        query.limit(size).skip((page - 1) * size).sort(sortObj);
+        return {
+            result: await query,
+            total: await Product.find(newQueryObj).countDocuments()
+        };
+    }
+    return await query.sort(sortObj);
+}
 
 /**
  * 验证一个数字是否正确
