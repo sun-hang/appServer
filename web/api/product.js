@@ -44,7 +44,7 @@ router.get('/', async (req, res, next) => {
 })
 
 /**
- * 根据状态查询商品
+ * 根据状态查询商品 state 大于-1 进行状态查询  等于-1 查询所有的状态
  */
 router.get('/state', async (req, res, next) => {
     let state = +req.query.state || -1;
