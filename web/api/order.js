@@ -53,11 +53,12 @@ router.get('/', async (req, res, next) => {
     if (req.query.state != undefined) {
         state = +req.query.state;
     }
+    let query = req.query.query || "";
     let _id = req.query.id || '';
     let page = +req.query.page || -1;
     let size = +req.query.size || 10;
     let ctime = +req.query.ctime || -1;
-    res.json(await Order.findByPage(page, size, state, isDelete, _id, ctime))
+    res.json(await Order.findByPage(page, size, state, isDelete, _id, ctime, query))
 })
 
 router.get('/id', async (req, res, next) => {

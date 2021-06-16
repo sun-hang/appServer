@@ -54,7 +54,7 @@ module.exports.findByPage = async (page = 1, size = 10, state = -1, isDelete = 1
     if (page != -1) {
         return {
             result: await Order.find(filter).limit(size).skip((page - 1) * size).sort({ orderTime }),
-            count: await Order.find(filter).limit(size).skip((page - 1) * size).sort({ orderTime }).countDocuments()
+            count: await Order.find(filter).countDocuments()
         }
     }
     return await Order.find(filter).sort({ orderTime })

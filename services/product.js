@@ -53,14 +53,24 @@ module.exports.findAndByPage = async (queryObj = { productName: '', tag: '' }, p
 
     queryObj.tag = queryObj.tag ? queryObj.tag : '';
     queryObj.productName = queryObj.productName ? queryObj.productName : '';
-    if (queryObj.productName && queryObj.tag) {
-        newQueryObj['$or'] = [{ productName: new RegExp(queryObj.productName) }, { tag: new RegExp(queryObj.tag) }];
-    } else if (queryObj.productName) {
-        newQueryObj.productName = new RegExp(queryObj.productName);
-    } else {
+    // if (queryObj.productName && queryObj.tag) {
+    //     newQueryObj['$or'] = [{ productName: new RegExp(queryObj.productName) }, { tag: new RegExp(queryObj.tag) }];
+    // } else if (queryObj.productName) {
+    //     newQueryObj.productName = new RegExp(queryObj.productName);
+    // } else {
+    //     newQueryObj.tag = new RegExp(queryObj.tag);
+    // }
+    if (queryObj.tag) {
         newQueryObj.tag = new RegExp(queryObj.tag);
     }
 
+    if (queryObj.productName) {
+        newQueryObj.productName = new RegExp(queryObj.productName);
+    }
+
+    if (queryObj.query) {
+        newQueryObj['$or'] = [{ productName: new RegExp(queryObj.query) }, { tag: new RegExp(queryObj.query) }];
+    }
 
     if (queryObj.currentPric) {
         newQueryObj.currentPric = { $gt: queryObj.currentPric.start, $lt: queryObj.currentPric.end };
@@ -94,7 +104,7 @@ module.exports.findOne = async (_id = '') => {
 module.exports.findState = async (state = -1, page = 1, size = 10, ctime) => {
     const queryObj = {};
     const sortObj = {};
-    if(ctime == -1){
+    if (ctime == -1) {
         sortObj.ctime = ctime;
     }
     if (state > -1) {

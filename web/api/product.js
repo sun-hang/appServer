@@ -13,6 +13,10 @@ router.get('/', async (req, res, next) => {
         pagerObj.size = req.query.size ? +req.query.size : 10;
     }
 
+    if(req.query.query){
+        queryObj.query = req.query.query;
+    }
+
     if (req.query.tag) {
         queryObj.tag = req.query.tag;
     }
