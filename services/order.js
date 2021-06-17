@@ -36,10 +36,25 @@ module.exports.removeOrder = async (_id) => {
  * @param {Boolean} isDelete 用户端是否已删除 0为删除 1为未删除
  * @param {String} _id 用户objectId
  */
-module.exports.findByPage = async (page = 1, size = 10, state = -1, isDelete = 1, _id = '', orderTime = -1) => {
-    const filter = {
-        isDelete
-    };
+module.exports.findByPage = async (page = 1, size = 10, state = -1, isDelete = 1, _id = '', orderTime = -1, query = "") => {
+    const filter = {};
+
+    /**
+     * 用于查询
+     */
+    if (query) {
+        filter.$or = [
+            {
+                'address.userName': query
+            },
+            {
+                "address.phone": query
+            },
+            {
+                orderNumber: query
+            }
+        ]
+    }
 
     if (isDelete > -1 && isDelete < 2) {
         filter.isDelete = isDelete;
