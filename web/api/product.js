@@ -55,7 +55,7 @@ router.get('/state', async (req, res, next) => {
     let page = +req.query.page || 1;
     let size = +req.query.size || 10;
     let ctime = +req.query.ctime
-    res.json(await productSer.findState(state, page, size, ctime))；
+    res.json(await productSer.findState(state, page, size, ctime));
 })
 
 /**
