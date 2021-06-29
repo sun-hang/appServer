@@ -115,7 +115,7 @@ module.exports.findState = async (state = -1, page = 1, size = 10, ctime) => {
         query.limit(size).skip((page - 1) * size).sort(sortObj);
         return {
             result: await query,
-            total: await Product.find(newQueryObj).countDocuments()
+            total: await Product.find(queryObj).countDocuments()
         };
     }
     return await query.sort(sortObj);
